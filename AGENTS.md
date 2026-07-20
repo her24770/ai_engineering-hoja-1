@@ -23,7 +23,13 @@ npm run test           # correr tests (vitest run)
 npm run coverage       # correr tests con reporte de cobertura (umbral 80%, ver vitest.config.ts)
 npm run build           # compilar TypeScript a dist/
 npm run package         # build + empaquetar binarios (linux/macos/win) en dist-bin/
+
+# correr un solo archivo o caso de test (util al debuggear)
+npx vitest run tests/unit/cart/Cart.test.ts
+npx vitest run -t "nombre parcial del test"
 ```
+
+Version de Node requerida: **20+** (ver `engines` en `package.json`).
 
 ## Estructura
 
@@ -48,7 +54,7 @@ tests/
 
 ## Flujo de trabajo (obligatorio)
 
-- Estrategia de ramas: **GitHub Flow puro**. No existe rama `develop`.
+- Estrategia de ramas: **GitHub Flow puro**. No existe ni se debe crear una rama `develop` u otra rama de integracion intermedia — las ramas de trabajo salen directo de `main` y vuelven a `main`.
 - `main` esta protegida: nadie hace push directo, todo cambio entra por Pull Request.
 - Toda PR requiere al menos **1 aprobacion de alguien distinto al autor** antes de mergear.
 - Nombres de rama: `feature/<descripcion>`, `fix/<descripcion>`, `chore/<descripcion>`.
@@ -67,3 +73,5 @@ tests/
 - Antes de tocar `src/cart` o `src/tui`, revisa si el modulo tiene un `TODO(Miembro N)` indicando quien es el owner de esa pieza, para no pisar trabajo en curso de otro integrante.
 - Corre `npm run lint` y `npm run coverage` antes de dar por terminado un cambio.
 - No agregues dependencias nuevas sin necesidad clara; este es un POC con alcance acotado.
+- No hagas `git add -A` sin revisar antes que archivos de trabajo personal (borradores, notas locales, etc.) no queden incluidos por error.
+- Licencia del proyecto: MIT (ver `LICENSE`).

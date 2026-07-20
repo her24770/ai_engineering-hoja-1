@@ -2,9 +2,13 @@
   "name": "shop502-cart-tui",
   "version": "0.1.0",
   "description": "POC de una TUI para el manejo del carrito de usuarios anonimos - Shop 502",
+  "license": "MIT",
   "private": true,
   "main": "dist/index.js",
   "bin": "dist/index.js",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "tsx src/index.ts",
     "build": "tsc -p tsconfig.json",
