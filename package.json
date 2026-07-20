@@ -1,0 +1,45 @@
+{
+  "name": "shop502-cart-tui",
+  "version": "0.1.0",
+  "description": "POC de una TUI para el manejo del carrito de usuarios anonimos - Shop 502",
+  "license": "MIT",
+  "private": true,
+  "main": "dist/index.js",
+  "bin": "dist/index.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "coverage": "vitest run --coverage",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "package": "npm run build && pkg . --output dist-bin/shop502-cart"
+  },
+  "pkg": {
+    "targets": [
+      "node20-linux-x64",
+      "node20-macos-x64",
+      "node20-win-x64"
+    ],
+    "outputPath": "dist-bin"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.9.0",
+    "@types/node": "^20.14.0",
+    "@vitest/coverage-v8": "^2.0.5",
+    "@yao-pkg/pkg": "^5.11.0",
+    "eslint": "^9.9.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.3.3",
+    "tsx": "^4.16.5",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.0.1",
+    "vitest": "^2.0.5"
+  }
+}
