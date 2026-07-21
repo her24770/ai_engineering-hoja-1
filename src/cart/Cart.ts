@@ -4,15 +4,20 @@ import type { CartItem } from './Cart.types';
 export class Cart {
   private items = new Map<string, number>();
 
-  applyOperation(_productId: string, _quantity: number): void {
-    throw new Error('Not implemented');
+  applyOperation(productId: string, quantity: number): void {
+    const currentQuantity = this.items.get(productId) ?? 0;
+
+    this.items.set(productId, currentQuantity + quantity);
   }
 
   getItems(): CartItem[] {
-    throw new Error('Not implemented');
+    return Array.from(this.items.entries()).map(([productId, quantity]) => ({
+      productId,
+      quantity,
+    }));
   }
 
   isEmpty(): boolean {
-    throw new Error('Not implemented');
+    return this.items.size === 0;
   }
 }
