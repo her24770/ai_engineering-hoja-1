@@ -3,11 +3,26 @@ export interface ParsedOperation {
   quantity: number;
 }
 
-// TODO(Miembro 3): parsear "<id_producto> <cantidad>" y manejar inputs invalidos.
-export function parseOperation(_input: string): ParsedOperation {
-  throw new Error('Not implemented');
+export function parseOperation(input: string): ParsedOperation {
+  const parts = input.trim().split(/\s+/);
+
+  if (parts.length !== 2) {
+    throw new Error('Formato inválido.');
+  }
+
+  const [productId, quantityText] = parts;
+  const quantity = Number(quantityText);
+
+  if (Number.isNaN(quantity) || !Number.isInteger(quantity)) {
+    throw new Error('Cantidad inválida.');
+  }
+
+  return {
+    productId,
+    quantity,
+  };
 }
 
-export function isExitCommand(_input: string): boolean {
-  throw new Error('Not implemented');
+export function isExitCommand(input: string): boolean {
+  return input.trim().toLowerCase() === 'bye';
 }

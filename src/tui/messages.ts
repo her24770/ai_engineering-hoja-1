@@ -1,22 +1,31 @@
 import type { CartItem } from '../cart/Cart.types';
 
-// TODO(Miembro 3): centralizar aqui los textos exactos del mock de la TUI.
-export function greet(_name: string): string {
-  throw new Error('Not implemented');
+export function greet(name: string): string {
+  return `Hola ${name}! Que deseas modificar en tu carrito?`;
 }
 
-export function cartSummary(_items: CartItem[]): string {
-  throw new Error('Not implemented');
+export function cartSummary(items: CartItem[]): string {
+  if (items.length === 0) {
+    return 'Tu carrito está vacío.';
+  }
+
+  let result = 'Tu carrito es:\n';
+
+  for (const item of items) {
+    result += `  - ${item.productId} con ${item.quantity} unidades\n`;
+  }
+
+  return result.trimEnd();
 }
 
 export function emptyCartMessage(): string {
-  throw new Error('Not implemented');
+  return 'Tu carrito está vacío, que más deseas hacer?';
 }
 
-export function productNotInCartError(_productId: string): string {
-  throw new Error('Not implemented');
+export function productNotInCartError(productId: string): string {
+  return `Oops parece que no tienes el producto ${productId} agregado a tu carrito. Que más deseas hacer?`;
 }
 
 export function farewell(): string {
-  throw new Error('Not implemented');
+  return 'Adiós fue un gusto atenderte!';
 }
