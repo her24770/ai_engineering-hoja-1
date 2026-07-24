@@ -30,9 +30,9 @@ export async function runSession(): Promise<void> {
       console.log(farewell());
       break;
     }
-
+    let operation = { productId: '', quantity: 0 };
     try {
-      const operation = parseOperation(input);
+      operation = parseOperation(input);
 
       cart.applyOperation(operation.productId, operation.quantity);
 
@@ -46,9 +46,11 @@ export async function runSession(): Promise<void> {
       }
     } catch (error) {
       if (error instanceof Error) {
-        console.log(error.message);
-      } else {
-        console.log(productNotInCartError(''));
+        if (error.message.includes('no se encontró en el carrito')) {
+          console.log(productNotInCartError(operation.productId));
+        } else {
+          console.log(error.message);
+        }
       }
     }
   }
